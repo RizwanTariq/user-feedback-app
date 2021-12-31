@@ -69,7 +69,7 @@ header {
   text-align: center;
   border-radius: 50%;
   font-size: 19px;
-  border: 1px #eee solid;
+  border: 1px #85c1e9 solid;
   transition: 0.3s;
 }
 
@@ -87,7 +87,7 @@ header {
 
 .rating li:hover,
 .num-display {
-  background: #ff6a95;
+  background: #3498db;
   color: #fff;
 }
 
