@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import feedbackData from "./data/feedbackData";
 import FeedbackList from "./components/FeedbackList";
+import FeedbackStats from "./components/FeedbackStats";
+import feedbackData from "./data/feedbackData";
 import confirmAlert from "./utils/confirmAlert";
 import "./App.css";
 
@@ -10,7 +11,6 @@ function App() {
 
   const handleFeedbackRemove = (id) => {
     const newList = feedbackList.filter((item) => item.id !== id);
-
     confirmAlert(() => setFeedbackList(newList));
   };
 
@@ -18,6 +18,7 @@ function App() {
     <>
       <Header />
       <div className="container">
+        <FeedbackStats feedbackList={feedbackList} />
         <FeedbackList
           feedbackList={feedbackList}
           onRemove={handleFeedbackRemove}
