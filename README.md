@@ -2,6 +2,10 @@
 
 building User Feedback App using reactJS.
 
+#Checkout Live End points
+https://user-feedback-reactjs.netlify.app/
+https://user-feedback-app-1996.herokuapp.com/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
