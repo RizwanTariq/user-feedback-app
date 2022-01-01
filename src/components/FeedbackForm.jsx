@@ -1,20 +1,34 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import FeedbackContext from "../context/FeedbackContext";
 import Button from "./common/Button";
 import Card from "./common/Card";
 import RatingSelect from "./RatingSelect";
 
 function FeedbackForm() {
-  const { handleSubmit } = useContext(FeedbackContext);
+  const { handleSubmit, handleUpdate, feedbackEdit } =
+    useContext(FeedbackContext);
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
+
+  useEffect(() => {
+    const feedback =
+      feedbackEdit.edit && Object.keys(feedbackEdit.item).length > 0
+        ? feedbackEdit.item
+        : { text: "", rating: 10 };
+    setText(feedback.text);
+    setRating(feedback.rating);
+  }, [feedbackEdit]);
 
   const handleChange = ({ target }) => {
     setText(target.value);
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSubmit({ id: Date.now(), text, rating });
+    if (feedbackEdit.edit) {
+      handleUpdate(feedbackEdit.item.id, { text, rating });
+    } else {
+      handleSubmit({ id: Date.now(), text, rating });
+    }
     setText("");
     setRating(10);
   };
@@ -22,7 +36,9 @@ function FeedbackForm() {
     <Card reverse={false}>
       <form onSubmit={onSubmit}>
         <h2>How would you rate our service?</h2>
-        <RatingSelect rating={rating} select={(rating) => setRating(rating)} />
+
+        {/* passing callback function */}
+        <RatingSelect select={(rating) => setRating(rating)} />
 
         <div className="input-group">
           <input

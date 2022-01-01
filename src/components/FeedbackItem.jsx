@@ -5,11 +5,11 @@ import FeedbackContext from "../context/FeedbackContext";
 import Card from "./common/Card";
 
 export default function FeedbackItem({ item }) {
-  const { onRemove } = useContext(FeedbackContext);
+  const { onRemove, handleEdit } = useContext(FeedbackContext);
   return (
     <Card reverse={true}>
       <div className="num-display">{item.rating}</div>
-      <button className="edit">
+      <button className="edit" onClick={() => handleEdit(item)}>
         <FaEdit color="#5DADE2" />
       </button>
       <button className="close" onClick={() => onRemove(item.id)}>

@@ -1,10 +1,22 @@
-import { useState } from "react";
-function RatingSelect({ select, rating }) {
-  const [selected, setSelected] = useState(rating);
+import { useState, useContext, useEffect } from "react";
+import FeedbackContext from "../context/FeedbackContext";
+
+function RatingSelect({ select }) {
+  const { feedbackEdit } = useContext(FeedbackContext);
+  const [selected, setSelected] = useState(10);
+
+  useEffect(() => {
+    const feedbackRating =
+      feedbackEdit.edit && Object.keys(feedbackEdit.item).length > 0
+        ? feedbackEdit.item.rating
+        : 10;
+    if (feedbackEdit.edit) setSelected(feedbackRating);
+  }, [feedbackEdit.item]);
 
   const handleChange = ({ target }) => {
     //+ sign converts string into number
     setSelected(+target.value);
+    //Callback called
     select(+target.value);
   };
   return (
