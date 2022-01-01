@@ -11,7 +11,7 @@ function RatingSelect({ select }) {
         ? feedbackEdit.item.rating
         : 10;
     if (feedbackEdit.edit) setSelected(feedbackRating);
-  }, [feedbackEdit.item]);
+  }, [feedbackEdit]);
 
   const handleChange = ({ target }) => {
     //+ sign converts string into number
