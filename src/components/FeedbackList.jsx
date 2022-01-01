@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FeedbackItem from "./FeedbackItem";
-function FeedbackList({ feedbackList, onRemove }) {
+import FeedbackContext from "../context/FeedbackContext";
+function FeedbackList() {
+  const { feedbackList } = useContext(FeedbackContext);
   if (!feedbackList || feedbackList.length === 0)
     return <p>There is no feedback yet!</p>;
   return (
@@ -13,7 +16,7 @@ function FeedbackList({ feedbackList, onRemove }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <FeedbackItem key={item.id} item={item} onRemove={onRemove} />
+            <FeedbackItem key={item.id} item={item} />
           </motion.div>
         ))}
       </AnimatePresence>

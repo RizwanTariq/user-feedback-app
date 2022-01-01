@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import FeedbackContext from "../context/FeedbackContext";
 import Button from "./common/Button";
 import Card from "./common/Card";
 import RatingSelect from "./RatingSelect";
 
-function FeedbackForm({ handleSubmit }) {
+function FeedbackForm() {
+  const { handleSubmit } = useContext(FeedbackContext);
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
 

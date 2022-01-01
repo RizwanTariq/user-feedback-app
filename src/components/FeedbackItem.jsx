@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
+import FeedbackContext from "../context/FeedbackContext";
 import Card from "./common/Card";
 
-export default function FeedbackItem({ item, onRemove }) {
+export default function FeedbackItem({ item }) {
+  const { onRemove } = useContext(FeedbackContext);
   return (
     <Card reverse={true}>
       <div className="num-display">{item.rating}</div>
